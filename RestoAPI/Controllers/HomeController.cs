@@ -7,11 +7,13 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Http;
-//using System.Web.Http;
-//using System.Web.Mvc;
+using System.Net.Http;
+using System.Web.Http.Cors;
 
 namespace RestoAPI.Controllers
 {
+    //[AllowCrossSiteJson]
+    [EnableCors(origins: "http://localhost:3000", headers: "*", methods: "*")]
     public class HomeController : ApiController
     {
         Repository repo;
@@ -46,6 +48,21 @@ namespace RestoAPI.Controllers
             catch (Exception e){
                 return BadRequest(e.Message);
             }            
+        }
+
+        [HttpGet]       
+        [Route("api/Products")]        
+        public IHttpActionResult GetProductsList()
+        {
+            try
+            {
+                var prods = repo.GetProductsList();
+                return Ok(prods);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpGet]
