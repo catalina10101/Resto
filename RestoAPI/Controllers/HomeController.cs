@@ -9,6 +9,8 @@ using System.Web;
 using System.Web.Http;
 using System.Net.Http;
 using System.Web.Http.Cors;
+using RestoRepo.Models;
+using RestoAPI.Models;
 
 namespace RestoAPI.Controllers
 {
@@ -88,6 +90,21 @@ namespace RestoAPI.Controllers
             {
                 var report = repo.GetProductsOrderedReport();
                 return Ok(report);
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpPost]
+        [Route("api/ChangeState")]
+        public IHttpActionResult ChangeState(ChangeOrderStateReq req)
+        {
+            try
+            {
+                orderState newState = repo.ChangeState(req.orderID, req.setNext);
+                return Ok((int)newState); // Ok(EnumTool.DescriptionAttr<orderState>(newState));
             }
             catch
             {

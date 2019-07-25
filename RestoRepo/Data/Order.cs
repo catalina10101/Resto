@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RestoRepo.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -11,7 +12,8 @@ namespace RestoRepo.Data
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderID { get; set; }
-        public string State { get; set; }
+        public int StateID { get; set; }
+        public string State { get { return EnumTool.DescriptionAttr<orderState>((orderState)this.StateID); } }
         public DateTime Date { get; set; }
 
         public virtual List<OrderProducts> OrderProducts { get; set; }

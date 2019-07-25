@@ -7,7 +7,6 @@ axios.defaults.headers.post['Content-Type'] = 'application/json';//headers for P
 //axios.defaults.headers['Access-Control-Request-Headers'] = '*';
 axios.interceptors.request.use( request => {
     //edit req : add auth headers, etc, log errors
-    console.log(request);
 	return request;//ALWAYS return req, otherwise req gets stopped.
 }, error => {
 	//handle error logic
@@ -22,15 +21,14 @@ class Repository {
         });
     }
 
-    GetOrderProducts = (callbackFcn) => {
-        axios.get('/api/Orders').then( res => {            
-            callbackFcn(res.data);
-        });
-    }
+    // GetOrderProducts = (callbackFcn) => {
+    //     axios.get('/api/Orders').then( res => {            
+    //         callbackFcn(res.data);
+    //     });
+    // }
 
     GetOrders = (callbackFcn) => {
         axios.get('/api/Orders').then( res => {
-            console.log(res);
             callbackFcn(res.data);
         });
     }
@@ -49,7 +47,17 @@ class Repository {
 
     PlaceAnOrder = (order) => {
         axios.post('/api/PlaceAnOrder', order).then( res => {
-            console.log(res);
+            
+        }, error => console.log(error));
+    }
+
+    ChangeState = (orderId, setNext, callbackFcn) => {
+        const data = {
+            orderID: orderId,
+            setNext: setNext
+        };
+        axios.post('/api/ChangeState', data).then( res => {            
+            callbackFcn(orderId, res.data);
         });
     }
 }

@@ -7,16 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace RestoRepo
-{
-    public enum orderState
-    {
-        [Description("Open")]
-        open = 1,
-        [Description("In Progress")]
-        inProgress = 2,
-        [Description("Ready")]
-        ready = 3
-    }
+{    
     public static class EnumTool
     {
         public static string DescriptionAttr<T>(this T source)

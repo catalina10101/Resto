@@ -25,10 +25,17 @@ const OrderSummary = (props) => {
             </div>
             <div className={'summaryCont'}>
                 <div>Order State: </div>
-                <div className={'changeState'}> <button> {'<'} </button> {props.order.State}  <button> {'>'} </button>  </div>
+                <div className={'changeState'}> <button onClick={props.onStateChanged.bind(this, props.order.OrderID, false)}> {'<'} </button>
+                 {   
+                    props.GetStateDescription(props.order.StateID)                                                  
+                 }                   
+                 <button onClick={props.onStateChanged.bind(this, props.order.OrderID, true)}> {'>'} 
+                 </button>  </div>
             </div>
         </div>  
     );
+
+    
 }
 
 export default OrderSummary;

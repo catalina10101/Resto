@@ -53,6 +53,7 @@
     <Compile Include="Data\OrderProducts.cs" />
     <Compile Include="Data\Order.cs" />
     <Compile Include="EnumTool.cs" />
+    <Compile Include="Models\orderStateEnum.cs" />
     <Compile Include="Models\ProductsOrderedReport.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="Data\Product.cs" />
