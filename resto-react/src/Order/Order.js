@@ -20,15 +20,13 @@ class Order extends Component {
     }
     
     componentDidMount = () => {
-        console.log("ComponentDidMount");
         this.repo.GetProductsList(this.SetProducts);
     }
 
     SetProducts = (data) => {
-        console.log(data);
         let orderProds = data;
         orderProds.forEach( x => x.Quantity = 0 );
-        console.log(orderProds);
+        //console.log(orderProds);
         this.setState({order: orderProds});
     }
 

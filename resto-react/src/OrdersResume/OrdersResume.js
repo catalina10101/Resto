@@ -24,10 +24,12 @@ class OrderResume extends Component {
             //     "Date": "2019-06-12T00:00:00"
             // }
         ],
+        filteredOrders:[]
 	}
     
     constructor(props) {
         super(props);
+        console.log("OrderResume...");
         this.repo = new Repository();
         this.orderElems = [];
         this.SetOrders.bind(this);
@@ -41,14 +43,18 @@ class OrderResume extends Component {
     }
 
     SetOrders = (data) => {
-        this.setState({ orders: data });
+        this.setState({ orders: data, filteredOrders: data });
     }
 
     render() {
         return (
             <div className="container">
                 <div><h2>ORDERS:</h2>  </div>
-
+                <div> 
+                    <input type="checkbox" id="chkOpen" onChange={this.FilterOrdersByState} /> <span>Open </span> 
+                    <input type="checkbox" id="chkInProgress" onChange={this.FilterOrdersByState} /> <span>In Progress </span> 
+                    <input type="checkbox" id="chkDelivered" onChange={this.FilterOrdersByState} /> <span>Delivered </span> 
+                </div>
                 <div style={{ textAlign: 'center' }}>
                     <div style={{display: 'inline-block', width: '80%'}}>
                         { 
@@ -61,24 +67,34 @@ class OrderResume extends Component {
     }
 
     renderOrderSummary = () => {
-        return this.state.orders.map(order => {
+        return this.state.filteredOrders.map(order => {
             return <OrderSummary order={order} ref={this.orderElems['ordersum-' + order.OrderID]} key={'key_ordersum_' + order.OrderID} 
             onStateChanged={this.OrderStateChanged} GetStateDescription={this.GetStateDescription}></OrderSummary>
          });
     }
 
+    FilterOrdersByState = () => {
+        let newOrders = [...this.state.orders];
+        let showStates = [];
+        if(document.getElementById('chkOpen').checked)
+            showStates.push(1);
+        if(document.getElementById('chkInProgress').checked)
+            showStates.push(2);
+        if(document.getElementById('chkDelivered').checked)
+            showStates.push(3);
+        newOrders = newOrders.filter(x=> showStates.includes( x.StateID));
+        this.setState({filteredOrders: newOrders});
+    }
+
     OrderStateChanged = (orderId, setNext) => {
-        console.log("OrderStateChanged", orderId, setNext);
         this.repo.ChangeState(orderId, setNext, this.UpdateOrderState.bind(this));
     }
 
     UpdateOrderState = (orderId, newState) => {
-        console.log(orderId, newState);
         const newOrders = [...this.state.orders];
         const orderIdx = this.state.orders.findIndex(x=> x.OrderID == orderId);
         newOrders[orderIdx].StateID = newState;
-        console.log(newOrders);
-        this.setState(newOrders);
+        this.setState({orders: newOrders }, this.FilterOrdersByState);
     }
 
     GetStateDescription = (stateID) => {

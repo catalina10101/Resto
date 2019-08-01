@@ -48,3 +48,28 @@ th, td {
 .buttonv1:hover {
   background-color: #F59553;
 }
+
+.menu ul{
+  list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+}
+.menu ul > li {
+  background-color: orange;
+  color: white;
+  display: inline-flex;  
+}
+
+.menu a {
+  text-decoration: none;
+  color: white;
+  padding: 20px;
+}
+
+.menu a:hover,
+.menu a:active {
+    color: darkblue;
+    background-color: goldenrod;
+}
