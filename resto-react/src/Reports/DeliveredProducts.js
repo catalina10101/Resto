@@ -29,7 +29,7 @@ class DeliveredProducts extends Component {
     render = () => {
         return (
             <div className="container">
-                <div><h2> DELIVERED PRODUCTS:</h2>  </div>
+                <div><h2> ORDERED PRODUCTS:</h2>  </div>
                 <div>
                     <table className="center">
                         <tbody>

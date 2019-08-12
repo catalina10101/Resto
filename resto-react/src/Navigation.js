@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Route, NavLink } from 'react-router-dom';
 
 import Order from './Order/Order';
 import OrderResume from './OrdersResume/OrdersResume';
 import DeliveredProducts from './Reports/DeliveredProducts';
+import restoImg from './resources/images/resto1.jpg';
 
 class Navigation extends Component {
 
@@ -11,18 +12,23 @@ class Navigation extends Component {
         return (
             <div>
                 <header>
-                    <nav className="menu"> 
-                        <ul>
-                            <li><Link to="/"> HOME </Link> </li>
-                            <li><Link to="/placeOrder"> Place an Order </Link></li>
-                            <li><Link to="/orders"> Orders </Link></li>
-                            <li><Link to="/reports"> Reports </Link></li>
+                    <nav > 
+                        <ul className="menu">
+                            <li><NavLink to="/" exact> HOME </NavLink> </li>
+                            <li><NavLink to="/placeOrder"> Place an Order </NavLink></li>
+                            <li><a href="">Reports</a>
+                                    <ul class="submenu">
+                                        <li><NavLink to="/orders"> Orders </NavLink></li>
+                                        <li><NavLink to="/delivered-prods"> Ordered Prods </NavLink></li>
+                                    </ul>
+                            </li>
                         </ul>
                     </nav>  
                 </header>
+                <Route path="/" render={ ()=> <div> <img src={restoImg} width="300" ></img> </div>} />
                 <Route path="/placeOrder" component={Order} />
 	            <Route path="/orders" component={OrderResume} />
-                <Route path="/reports" component={DeliveredProducts} />
+                <Route path="/delivered-prods" component={DeliveredProducts} />
             </div>
         );
     }

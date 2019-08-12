@@ -17,6 +17,7 @@ class Order extends Component {
         this.repo = new Repository();
         this.SetProducts = this.SetProducts.bind(this);
         this.SendOrder = this.SendOrder.bind(this);
+        this.ShowOrderSentMessage = this.ShowOrderSentMessage.bind(this);
     }
     
     componentDidMount = () => {
@@ -66,7 +67,14 @@ class Order extends Component {
 
     SendOrder = () => {
         console.log(this.state.order);
-        this.repo.PlaceAnOrder(this.state.order);
+        this.repo.PlaceAnOrder(this.state.order, this.ShowOrderSentMessage) ;
+    }
+
+    ShowOrderSentMessage= (res) => {
+        if(res.status == 200)
+            alert("Order sent successfully!");
+        else 
+            alert("Error sending order, please try again.");
     }
 
     CalculateTotal(){

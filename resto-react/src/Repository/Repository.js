@@ -45,10 +45,12 @@ class Repository {
         });
     }
 
-    PlaceAnOrder = (order) => {
+    PlaceAnOrder = (order, callbackFcn) => {
         axios.post('/api/PlaceAnOrder', order).then( res => {
-            
-        }, error => console.log(error));
+            callbackFcn(res);
+        }, error => {console.log(error); 
+            callbackFcn(error);
+        });
     }
 
     ChangeState = (orderId, setNext, callbackFcn) => {

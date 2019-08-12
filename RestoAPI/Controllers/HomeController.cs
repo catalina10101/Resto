@@ -44,7 +44,7 @@ namespace RestoAPI.Controllers
         {
             try
             {
-                var orders = repo.GetOrders();
+                var orders = repo.GetOrders(DateTime.Today, DateTime.Today);
                 return Ok(orders);
             }
             catch (Exception e){
@@ -88,12 +88,12 @@ namespace RestoAPI.Controllers
         {
             try
             {
-                var report = repo.GetProductsOrderedReport();
+                var report = repo.GetProductsOrderedReport(DateTime.Today, DateTime.Today);
                 return Ok(report);
             }
-            catch
+            catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex.Message);
             }
         }
 

@@ -29,11 +29,12 @@ namespace RestoRepo
             return ctx.Products.ToList();
         }
 
-        public List<Order> GetOrders()
+        public List<Order> GetOrders(DateTime startDate, DateTime EndDate)
         {
             using (var context = new RestoContext())
             {
-                List<Order> orders = context.Orders.Include("OrderProducts").ToList();                
+                DateTime endTime = EndDate.AddDays(1).AddHours(-1);
+                List<Order> orders = context.Orders.Where(x => x.Date >= startDate.Date && x.Date <= EndDate.Date).Include("OrderProducts").ToList();                
                 return orders;
             }                        
         }
@@ -47,16 +48,21 @@ namespace RestoRepo
             }
         }
 
-        public List<ProductsOrderedReport> GetProductsOrderedReport()
+        public List<ProductsOrderedReport> GetProductsOrderedReport(DateTime startDate, DateTime EndDate)
         {
             using (var context = new RestoContext())
             {
                 List<ProductsOrderedReport> report = new List<ProductsOrderedReport>();
                 List<Product> prods = context.Products.ToList();
+                DateTime endTime = EndDate.AddDays(1).AddHours(-1);
+                var todayOrders = context.Orders.Where(x => x.Date >= startDate.Date && x.Date <= EndDate.Date).ToList();
+                var todayOrderedProds = new List<OrderProducts>();
+                foreach (var order in todayOrders)
+                    todayOrderedProds.AddRange(order.OrderProducts);
                 foreach (var prod in prods)
                 {
                     ProductsOrderedReport row = new ProductsOrderedReport();
-                    var orderedProds = context.OrderProducts.Where(x => x.ProductId == prod.ProductID);
+                    var orderedProds = todayOrderedProds.Where(x => x.ProductId == prod.ProductID);
                     row.ProductName = prod.ProductName;
                     row.UnitPrice = prod.Price;
                     row.Quantity = orderedProds.Sum(x => x.Quantity);
