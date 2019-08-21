@@ -1,14 +1,3 @@
-C:\Repositories\Resto\RestoRepo\bin\Debug\RestoRepo.dll.config
-C:\Repositories\Resto\RestoRepo\bin\Debug\RestoRepo.dll
-C:\Repositories\Resto\RestoRepo\bin\Debug\RestoRepo.pdb
-C:\Repositories\Resto\RestoRepo\bin\Debug\EntityFramework.dll
-C:\Repositories\Resto\RestoRepo\bin\Debug\EntityFramework.SqlServer.dll
-C:\Repositories\Resto\RestoRepo\bin\Debug\EntityFramework.xml
-C:\Repositories\Resto\RestoRepo\bin\Debug\EntityFramework.SqlServer.xml
-C:\Repositories\Resto\RestoRepo\obj\Debug\RestoRepo.csproj.CoreCompileInputs.cache
-C:\Repositories\Resto\RestoRepo\obj\Debug\RestoRepo.csproj.CopyComplete
-C:\Repositories\Resto\RestoRepo\obj\Debug\RestoRepo.dll
-C:\Repositories\Resto\RestoRepo\obj\Debug\RestoRepo.pdb
 C:\Users\aurulloa\source\repos\WebApplication1\RestoRepo\bin\Debug\RestoRepo.dll.config
 C:\Users\aurulloa\source\repos\WebApplication1\RestoRepo\bin\Debug\RestoRepo.dll
 C:\Users\aurulloa\source\repos\WebApplication1\RestoRepo\bin\Debug\RestoRepo.pdb
@@ -19,4 +8,3 @@ C:\Users\aurulloa\source\repos\WebApplication1\RestoRepo\obj\Debug\RestoRepo.csp
 C:\Users\aurulloa\source\repos\WebApplication1\RestoRepo\obj\Debug\RestoRepo.csproj.CopyComplete
 C:\Users\aurulloa\source\repos\WebApplication1\RestoRepo\obj\Debug\RestoRepo.dll
 C:\Users\aurulloa\source\repos\WebApplication1\RestoRepo\obj\Debug\RestoRepo.pdb
-C:\Repositories\Resto\RestoRepo\obj\Debug\RestoRepo.csprojAssemblyReference.cache
